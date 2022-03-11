@@ -7,6 +7,10 @@ The core of reline is to enable developers to "collect" the information of the t
 
 **Reline only provides some basic functions of drawing mind map at present**
 
+Usage
+
+
+
 ---
 
 README-zh
@@ -17,3 +21,6 @@ Reline是一款自定义操作的思维导图编辑软件.
 Reline的核心在于让开发者能够通过**树的遍历**的方式来端到端地"收集"树的信息,最终将信息汇聚到树的根节点.除了这个功能以外,Reline提供较为简单但完备的思维导图功能.
 
 **Reline目前只提供一些基本的绘制思维导图的功能.**
+
+使用说明
+TODO
