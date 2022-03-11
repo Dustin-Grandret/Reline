@@ -1,0 +1,9 @@
+[missing_id: _id is required for puts] { status: 412, error: true }
+没一条增加的数据都需要增加内容:
+[conflict: Document update conflict] {
+  status: 409,
+  error: true,
+  id: 'qdqweaqd-1_()',
+  docId: 'qdqweaqd-1_()'
+}
+重复添加导致的bug

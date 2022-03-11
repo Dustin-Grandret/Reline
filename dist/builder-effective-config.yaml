@@ -1,0 +1,12 @@
+directories:
+  output: dist
+  buildResources: build
+appId: relinev2
+productName: reline
+linux:
+  target:
+    - deb
+    - snap
+    - 7z
+files: []
+electronVersion: 17.1.1

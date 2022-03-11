@@ -1,0 +1,1 @@
+{"version":3,"file":"mindGraph.js","sourceRoot":"","sources":["../../src/dataStructure/mindGraph.ts"],"names":[],"mappings":";;AAwCA,IAAM,CAAC,GAAoB,CAAC;QACxB,GAAG,EAAE,GAAG;QACR,QAAQ,EAAC;YACL,IAAI,EAAE,CAAC,GAAG,CAAC;SACd;QACD,KAAK,EAAE,EACN;QACD,KAAK,EAAE,EAAE;KAEZ,CAAC,CAAC;AACH,OAAO,CAAC,GAAG,CAAC,CAAC,CAAC,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"fastCopy.js","sourceRoot":"","sources":["../../../src/services/utils/fastCopy.ts"],"names":[],"mappings":";;;AAAA;IAAA;IAIA,CAAC;IAHU,iBAAQ,GAAf,UAAmB,MAAQ;QACvB,OAAO,IAAI,CAAC,KAAK,CAAC,IAAI,CAAC,SAAS,CAAC,MAAM,CAAC,CAAC,CAAC;IAC9C,CAAC;IACL,eAAC;AAAD,CAAC,AAJD,IAIC;AACD,kBAAe,QAAQ,CAAC,QAAQ,CAAC;AAEjC,IAAM,aAAa,GAAG,QAAQ,CAAC;AAG3B,sCAAa"}

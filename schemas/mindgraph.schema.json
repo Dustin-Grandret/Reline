@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/MindGraph",
+  "title": "Reline MindGraph Schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mindGraph": {
+          "$ref": "#/definitions/mindGraph"
+        }
+      },
+      "required": ["mindGraph"]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mindGraphs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mindGraph"
+          }
+        }
+      },
+      "required": ["mindGraphs"]
+    }
+  ],
+  "definitions": {
+    "mindGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "mindGraphName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "repositories": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        },
+        "license": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "directed": true,
+        "metadata": {
+          "type": "object",
+          "properties": {}
+        },
+        "nodes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "node"
+          }
+        },
+        "edges": {
+          "type": ["array"],
+          "items": {
+            "$ref": "#/definitions/edge"
+          }
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+              "_basic":{}
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "directed": true,
+        "label": {
+          "type": "string"
+        },
+        "metadata": {
+          "types": "array",
+          "items": {
+            "type":"string"
+          }
+        }
+      },
+      "required": ["source", "target"]
+    }
+  }
+}

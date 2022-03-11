@@ -1,0 +1,65 @@
+.GridItemMax {
+    height:100%;
+}
+.MainViewContainer {
+    display:relative;
+    height:100%;
+}
+.MainViewWorkStationContainer {
+    height: 95%;
+}
+.MainViewFootbarContainer {
+    height: 10px;
+    background-color: white;
+}
+.RelineDiagram {
+    user-select: none;
+    border-style: groove;
+    border-width: thin;
+    background:
+        linear-gradient(to right,#ccc 1px,transparent 1px),
+        linear-gradient(to bottom,#ccc 1px,transparent 1px);
+        background-repeat: repeat;/* 默认为 repeat */
+        background-size: 10px 10px;
+}
+line {
+    stroke: blue;
+    stroke-width: 0.01;
+}
+.SidebarContainer {
+    user-select:none;
+    border-style: groove;
+    border-width: thin;
+}
+.SidebarTab {
+    background-color: red;
+}
+.SidebarTabPanel {
+
+}
+.ButtonMax {
+    min-width: 100%;
+    max-width: 100%;
+}
+.CreateGraphRoute {
+    padding: 10px;
+    background-color: aliceblue;
+    overflow: auto;
+}
+.StartPage {
+    padding: 10px;
+    background-color: aliceblue;
+    height: 100%;
+    overflow: auto;
+}
+.StartPageContainer {
+    padding: 100px;
+    padding-top: 50px;
+    overflow: auto;
+}
+.StartPageDivider {
+    padding: 50px;
+}
+.Alert {
+    width: 100%;
+}

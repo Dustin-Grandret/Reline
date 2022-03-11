@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> services/Reline/utils/RelineNodeUtil.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Reline</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#RelineNodeUtil">RelineNodeUtil</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>services/Reline/utils/RelineNodeUtil.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+var __assign = (this &amp;&amp; this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i &lt; n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this &amp;&amp; this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) &amp;&amp; e.indexOf(p) &lt; 0)
+        t[p] = s[p];
+    if (s != null &amp;&amp; typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i &lt; p.length; i++) {
+            if (e.indexOf(p[i]) &lt; 0 &amp;&amp; Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
+    return (mod &amp;&amp; mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-syntax */
+var underscore_1 = __importDefault(require("underscore"));
+var fastCopy_1 = __importDefault(require("../../utils/fastCopy"));
+/**
+ * Class representing an util of RelineNode
+ */
+var RelineNodeUtil = /** @class */ (function () {
+    function RelineNodeUtil() {
+    }
+    /**
+     * PARAMETER INMUTABLE
+     * Create a new node with given node. If 'id' is a empty string, return undefined.
+     * and throw an exception if options.strict is true.
+     * @param {String} id The id of the given node. Invoker should the uniqueness of the id of node.
+     * @param {{strict:boolean}} options
+     * @returns {RelineNodeSchema|undefined}
+     */
+    RelineNodeUtil.create = function (id, options) {
+        if (id === "") {
+            if (options.strict) {
+                throw Error("Empty string id in Creating node");
+            }
+            else {
+                return undefined;
+            }
+        }
+        return {
+            id: id,
+            metadata: {
+                basic: {
+                    id: id,
+                },
+            },
+        };
+    };
+    /**
+     * PARAMETER INMUTABLE
+     * Returns a copy of a given node. This function will not do checking for 'node'.
+     * Use RelineValidator to verify the parameter(s) before using it.
+     * @param {RelineNodeSchema} node
+     * @returns {RelineNodeSchema} a copy of the node
+     */
+    RelineNodeUtil.copy = function (node) {
+        return (0, fastCopy_1.default)(node);
+    };
+    /**
+     * PARAMETER INMUTABLE
+     * True if node1,node2 have value equality in their metadata(without feild basic).
+     * This function will not do checking for param:node1,node2.
+     * Use RelineValidator to verify the parameter(s) before using it.
+     * @param {RelineNodeSchema} node1
+     * @param {RelineNodeSchema} node2
+     * @returns {Boolean}
+     */
+    RelineNodeUtil.isEqual = function (node1, node2) {
+        var nodesMetaData = ([node1.metadata, node2.metadata]).map(function (item) {
+            var basic = item.basic, other = __rest(item, ["basic"]);
+            return __assign({}, other);
+        });
+        return underscore_1.default.isEqual(nodesMetaData[0], nodesMetaData[1]);
+    };
+    /**
+     * PARAMETER MUTABLE
+     * Change the field of the 'node' with a given fieldName.
+     * This function will not do checking for param:node.
+     * Use RelineValidator to verify the parameter(s) before using it.
+     * This function do nothing if fieldName is an empty string.
+     * If fieldName is not founded in node.metadata,
+     * this function create a field with the given fieldName and field if
+     * options.strict is false or throw an exception.
+     * // TODO :Use a check table.
+     * @param {RelineNodeSchema} node
+     * @param {string} fieldName
+     * @param {Object} field
+     * @param {{strict:boolean}} options
+     * @returns {RelineNodeSchema} the reference of given node for cascading calls.
+     */
+    RelineNodeUtil.updateField = function (node, fieldName, field, options) {
+        var fieldNameFlag = 0;
+        if (fieldName === "") {
+            fieldNameFlag = 1 /* emptyString */;
+        }
+        else if (!(Object.prototype.hasOwnProperty.call(node.metadata, fieldName))) {
+            fieldNameFlag = 2 /* notFounded */;
+        }
+        else {
+            fieldNameFlag = 0 /* founded */;
+        }
+        if (fieldNameFlag === 1 /* emptyString */ &amp;&amp; options.strict) {
+            throw Error("FieldName is empty and function is in strict-mode");
+        }
+        else if (fieldNameFlag === 1 /* emptyString */ &amp;&amp; !options.strict) {
+            return node;
+        }
+        else if (fieldNameFlag === 2 /* notFounded */ &amp;&amp; options.strict) {
+            throw Error("FieldName is not founded in node and function is in strict-mode");
+        }
+        else if (fieldNameFlag === 2 /* notFounded */ &amp;&amp; !options.strict) {
+            var temp = (node);
+            temp.metadata[fieldName] = field;
+            return temp;
+        }
+        else if (fieldNameFlag === 0 /* founded */ &amp;&amp; options.strict) {
+            var temp = (node);
+            temp.metadata[fieldName] = field;
+            return temp;
+        }
+        else { // (fileNameFlag === FieldNameFlag.founded &amp;&amp; !options.strict)
+            var temp = (node);
+            temp.metadata[fieldName] = field;
+            return temp;
+        }
+    };
+    /**
+     * PARAMETER MUTABLE
+     * Create a field in a given node.
+     * This function will not do checking for param:node.
+     * Use RelineValidator to verify the parameter(s) before using it.
+     * This function do nothing if fieldName is an empty string.
+     * If there is a field with fieldName as it's key,this function will do nothing if
+     * options.strict is false.
+     * @param {RelineNodeSchema} node
+     * @param {string} fieldName
+     * @param {{strict:boolean}} options
+     * @returns {RelineNodeSchema} the reference of given node for cascading calls.
+     */
+    RelineNodeUtil.createField = function (node, fieldName, options) {
+        var fieldNameFlag = 0;
+        if (fieldName === "") {
+            fieldNameFlag = 1 /* emptyString */;
+        }
+        else if (!(Object.prototype.hasOwnProperty.call(node.metadata, fieldName))) {
+            fieldNameFlag = 2 /* notFounded */;
+        }
+        else {
+            fieldNameFlag = 0 /* founded */;
+        }
+        if (fieldNameFlag === 1 /* emptyString */ &amp;&amp; options.strict) {
+            throw Error("FieldName is empty and function is in strict-mode");
+        }
+        else if (fieldNameFlag === 1 /* emptyString */ &amp;&amp; !options.strict) {
+            return node;
+        }
+        else if (fieldNameFlag === 2 /* notFounded */ &amp;&amp; options.strict) {
+            var temp = (node);
+            temp.metadata[fieldName] = {};
+            return temp;
+        }
+        else if (fieldNameFlag === 2 /* notFounded */ &amp;&amp; !options.strict) {
+            var temp = (node);
+            temp.metadata[fieldName] = {};
+            return temp;
+        }
+        else if (fieldNameFlag === 0 /* founded */ &amp;&amp; options.strict) {
+            throw Error("Duplicated creating feild in strict mode");
+        }
+        else { // (fileNameFlag === FieldNameFlag.founded &amp;&amp; !options.strict)
+            return node;
+        }
+    };
+    /**
+     * PARAMETER MUTABLE
+     * Delete a field in a given node
+     * This function will not do checking for param:node.
+     * Use RelineValidator to verify the parameter(s) before using it.
+     * This function do nothing if fieldName is an empty string.
+     * If there is no feild with fieldName as its key, this function will do nothing if
+     * options.strict is false or throw an exception.
+     * @param {RelineNodeSchema} node
+     * @param {String} fieldName
+     * @param {{strict:boolean}} options
+     * @returns {RelineNodeSchema} the reference of given node for cascading calls.
+     */
+    RelineNodeUtil.deleteField = function (node, fieldName, options) {
+        var fieldNameFlag = 0;
+        if (fieldName === "") {
+            fieldNameFlag = 1 /* emptyString */;
+        }
+        else if (!(Object.prototype.hasOwnProperty.call(node.metadata, fieldName))) {
+            fieldNameFlag = 2 /* notFounded */;
+        }
+        else {
+            fieldNameFlag = 0 /* founded */;
+        }
+        if (fieldNameFlag === 1 /* emptyString */ &amp;&amp; options.strict) {
+            throw Error("FieldName is empty and function is in strict-mode");
+        }
+        else if (fieldNameFlag === 1 /* emptyString */ &amp;&amp; !options.strict) {
+            return node;
+        }
+        else if (fieldNameFlag === 2 /* notFounded */ &amp;&amp; options.strict) {
+            throw Error("FieldName is not founded in node and function is in strict-mode");
+        }
+        else if (fieldNameFlag === 2 /* notFounded */ &amp;&amp; !options.strict) {
+            return node;
+        }
+        else if (fieldNameFlag === 0 /* founded */ &amp;&amp; options.strict) {
+            delete (node.metadata)[fieldName];
+            return node;
+        }
+        else { // (fileNameFlag === FieldNameFlag.founded &amp;&amp; !options.strict)
+            delete (node.metadata)[fieldName];
+            return node;
+        }
+    };
+    /**
+     * PARAMETER INMUTABLE
+     * True if field1,field2 have value equality.
+     * @param {Object} field1
+     * @param {Object} field2
+     * @return {Boolean}
+     */
+    RelineNodeUtil.isEqualField = function (field1, field2) {
+        return underscore_1.default.isEqual(field1, field2);
+    };
+    /**
+     * PARAMETER MUTABLE
+     * Update the id of a given node.
+     * This function will not do checking for param:node.
+     * Use RelineValidator to verify the parameter(s) before using it.
+     * If newId is an empty string, throw an error
+     * @param {RelineNodeSchema} node
+     * @param {string} newId The newid of the given node. Invoker should the
+     *  uniqueness of the id of node.
+     * @returns {RelineNodeSchema} the reference of given node for cascading calls.
+     */
+    RelineNodeUtil.updateId = function (node, newId) {
+        if (newId !== "") {
+            node.id = newId;
+            node.metadata.basic.id = newId;
+            return node;
+        }
+        throw Error("Updating node id with empty string");
+    };
+    return RelineNodeUtil;
+}());
+exports.default = RelineNodeUtil;
+//# sourceMappingURL=RelineNodeUtil.js.map</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

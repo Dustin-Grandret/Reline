@@ -1,0 +1,31 @@
+Since this is the canonical identifier for a product, it doesn’t make sense to have a product without one, so it is required.
+The unique identifier for a product
+A product from Acme's catalog
+So far our JSON schema has been wholly self contained. 
+It is very common to share JSON schema across many data structures for reuse, readability and maintainability among other reasons.
+instance.mindGraph is not allowed to have the additional property "mindGraph"
+Pouchdb internally uses WebSQL and and IndexedDB to store data.
+Using PouchDB you can communicate with both local and remote databases seamlessly without noticing any difference.
+Cross Browser:The API provided by PouchDB works the same in every environment, we can run a PouchDB application in various browsers.
+If you have a prior knowledge of any programming language, it's easy to learn PouchDB.
+PouchDB is an Open Source Application and is available on GitHub
+If you have the time, you are strongly encouraged to watch this 50-minute video: "Redemption from Callback Hell". The rest of this chapter basically summarizes that video.
+This is the official style guide for writing Redux code. It lists our recommended patterns, best practices, and suggested approaches for writing Redux applications.
+Both the Redux core library and most of the Redux documentation are unopinionated. There are many ways to use Redux, and much of the time there is no single "right" way to do things.
+However, time and experience have shown that for some topics, certain approaches work better than others. In addition, many developers have asked us to provide official guidance to reduce decision fatigue.
+With that in mind, we've put together this list of recommendations to help you avoid errors, bikeshedding, and anti-patterns. We also understand that team preferences vary and different projects have different requirements, so no style guide will fit all sizes. You are encouraged to follow these recommendations, but take the time to evaluate your own situation and decide if they fit your needs.
+
+Finally, we'd like to thank the Vue documentation authors for writing the Vue Style Guide page, which was the inspiration for this page.
+Priority A Rules: Essential​
+Do Not Mutate State​
+
+Mutating state is the most common cause of bugs in Redux applications, including components failing to re-render properly, and will also break time-travel debugging in the Redux DevTools. Actual mutation of state values should always be avoided, both inside reducers and in all other application code.
+
+Use tools such as redux-immutable-state-invariant to catch mutations during development, and Immer to avoid accidental mutations in state updates.
+
+    Note: it is okay to modify copies of existing values - that is a normal part of writing immutable update logic. Also, if you are using the Immer library for immutable updates, writing "mutating" logic is acceptable because the real data isn't being mutated - Immer safely tracks changes and generates immutably-updated values internally.
+
+
+There is no consensus on the right way to organize a React application. React gives you a lot of freedom, but with that freedom comes the responsibility of deciding on your own architecture. Often the case is that whoever sets up the application in the beginning throws almost everything in a components folder, or maybe components and containers if they used Redux, but I propose there's a better way. I like to be deliberate about how I organize my applications so they're easy to use, understand, and extend.
+
+I'm going to show you what I consider to be an intuitive and scalable system for large-scale production React applications. The main concept I think is important is to make the architecture focused on feature as opposed to type, organizing only shared components on a global level and modularized all the other related entities together in the localized view.

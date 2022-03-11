@@ -1,0 +1,24 @@
+1.需求设计，整理产品功能
+2.画UI设计图
+3.详细设计每一层
+
+1.设计数据库中数据的存储格式:使用JsonSchema
+1.1写一个json文件 [%]
+1.2按照这个json文件写出需求[%]
+1.3按照这个需求写出jsonSchema[%]
+1.4下载jsonSchemaValidation检测json文件是否正确 [%]
+1.5搭一个pouchdb数据库
+每一个doc
+
+我认为我应该使用树的结构来表示mindmap。
+简单一些。
+拒绝:
+1.我希望我的mindgraph格式容易被其他软件处理，可使用其他软件包的方法。
+
+2.设计对象层
+2.1下载eslint,prettier,jest，配置
+2.2配置eslint和typescript
+2.3配置eslint和jest
+2.4定义出MGSMan类
+2.5写MGSMan测试
+2.6实现MGSMan并进行测试

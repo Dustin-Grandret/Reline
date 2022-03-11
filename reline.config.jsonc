@@ -1,0 +1,23 @@
+{
+    "recentPaths":[
+        "./test.json"
+    ],
+    "plugins":{
+        "toMarkdown": {
+            "path": "./toMarkdown/target/index.html"
+        }
+    },
+    "windows": {
+        "width": 1200,
+        "height": 1050,
+        "minWidth": 800,
+        "minHeight": 600,
+        "webPreferences": {
+            "nodeIntegration": true,
+            "contextIsolation": false
+        }
+    },
+    "templates": {
+
+    }
+}

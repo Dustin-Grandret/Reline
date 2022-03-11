@@ -1,0 +1,43 @@
+{
+    "mindGraph":{
+        "_id":"qdqweaqd-1_()",
+        "mindGraphName":"reline-structure",
+        "description":"It's the structure of reline software",
+        "keywords":["reline","structure","software"],
+        "repository":{
+            "type":"git",
+            "url":"https://example.com/reline-structure.json"
+        },
+        "license":"MIT",
+        "version":"2.0",
+        "contributors":[
+            {
+                "name":"Dustin",
+                "email":"123456@email.com"
+            }
+        ],
+        "nodes":{
+            "0":{
+                "label":"Reline",
+                "metadata":{
+                    "note":"Main software",
+                    "type":"title"
+                }
+            },
+            "1":{
+                "label":"electron",
+                "metadata":{
+                    "note":"stucture",
+                    "type":"subtitle"
+                }
+            }
+        },
+        "edges":[
+            {
+                "id":"10",
+                "source":"0",
+                "target":"1"
+            }
+        ]
+    }
+}

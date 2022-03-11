@@ -1,0 +1,15 @@
+readFile 需要使用回调函数
+TypeError [ERR_INVALID_CALLBACK]: Callback must be a function. Received { encoding: 'utf-8', flag: 'r' }
+
+改成readFileSync或者使用异步来做
+
+console(something)
+TypeError: console is not a function
+应该使用console.log(something);
+
+修改->保存->运行
+
+pouchdb:官网写得有问题
+/github.com/pouchdb/pouchdb/issue/6692
+import PouchDB from 'pouchdb';
+let db = new PouchDB('something');

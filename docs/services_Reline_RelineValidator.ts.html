@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/Reline/RelineValidator.ts</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/Reline/RelineValidator.ts</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Validator } from "jsonschema";
+import RelineElementBaseSchema from "./schema/elementBase.relineSchema.json";
+import RelineNodeSchema from "./schema/node.relineSchema.json";
+import RelineEdgeSchema from "./schema/edge.relineSchema.json";
+import RelineGraphSchema from "./schema/graph.relineSchema.json";
+import RelineGraphsSchema from "./schema/graphs.relineSchema.json";
+
+/**
+ * Class represent a validator of Reline elements
+ */
+class RelineValidator {
+    elementBaseValidator:Validator;
+
+    elementBaseSchema:Object;
+
+    nodeValidator:Validator;
+
+    nodeSchema:Object;
+
+    edgeValidator:Validator;
+
+    edgeSchema:Object;
+
+    graphValidator:Validator;
+
+    graphSchema:Object;
+
+    graphsValidator:Validator;
+
+    graphsSchema:Object;
+
+    constructor() {
+        // TODO: Constructor是否可以重复使用validator
+        this.elementBaseValidator = new Validator();
+        this.elementBaseSchema = RelineElementBaseSchema;
+
+        this.nodeValidator = new Validator();
+        this.nodeSchema = RelineNodeSchema;
+
+        this.edgeValidator = new Validator();
+        this.edgeSchema = RelineEdgeSchema;
+
+        this.graphValidator = new Validator();
+        this.graphValidator.addSchema(this.nodeSchema, "node.relineSchema.json");
+        this.graphValidator.addSchema(this.edgeSchema, "edge.relineSchema.json");
+        this.graphSchema = RelineGraphSchema;
+
+        this.graphsValidator = new Validator();
+        this.graphsValidator.addSchema(this.nodeSchema, "node.relineSchema.json");
+        this.graphsValidator.addSchema(this.edgeSchema, "edge.relineSchema.json");
+        this.graphsValidator.addSchema(this.graphSchema, "graph.relineSchema.json");
+        this.graphsSchema = RelineGraphsSchema;
+    }
+
+    /**
+     * Verifies the object is a Reline ElementBase.
+     * @param object {Object}
+     * @returns {Boolean}
+     */
+    isValidElementBase(object:any): boolean {
+        const schemaAnalysisResult = this.elementBaseValidator
+            .validate(object, this.elementBaseSchema);
+        const schemaErrorsNum = schemaAnalysisResult.errors.length;
+        if (schemaErrorsNum !== 0) {
+            return false;
+        }
+
+        // Check object.id===object.metadata.basic.id
+        const relineElementBaseAnalysisResult = (object.id === object.metadata.basic.id);
+
+        if (!relineElementBaseAnalysisResult) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Verifies the object is a Reline Node.
+     * @param object {Object}
+     * @returns {Boolean}
+     */
+    isValidNode(object:any): boolean {
+        const schemaAnalysisResult = this.nodeValidator.validate(object, this.nodeSchema);
+        const schemaErrorsNum = schemaAnalysisResult.errors.length;
+        if (schemaErrorsNum !== 0) {
+            return false;
+        }
+
+        // Check object.id===object.metadata.basic.id
+        const relineNodeAnalysisResult = (object.id === object.metadata.basic.id);
+
+        if (!relineNodeAnalysisResult) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Verifies the object is a Reline Edge.
+     * @param object {Object}
+     * @returns {Boolean}
+     */
+    isValidEdge(object:any): boolean {
+        const schemaAnalysisResult = this.edgeValidator.validate(object, this.edgeSchema);
+        const schemaErrorsNum = schemaAnalysisResult.errors.length;
+        if (schemaErrorsNum !== 0) {
+            return false;
+        }
+        // Check object.id===object.metadata.basic.id
+        const relineEdgeAnalysisResult = (object.id === object.metadata.basic.id);
+
+        if (!relineEdgeAnalysisResult) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Verifies the object is a Reline Graph.
+     * @param object {Object}
+     * @returns {Boolean}
+     */
+    isValidGraph(object:any): boolean {
+        // TODO: 此处重复检查了node和edge的json格式，可以分割代码来减少检查次数。
+        const schemaAnalysisResult = this.graphValidator.validate(object, this.graphSchema);
+        const schemaErrorsNum = schemaAnalysisResult.errors.length;
+        if (schemaErrorsNum !== 0) {
+            return false;
+        }
+
+        // Check every node.id in object has the same value of their key, every node is valid.
+        // eslint-disable-next-line no-restricted-syntax
+        for (const nodeId in object.nodes) {
+            if (object.nodes[nodeId].id !== nodeId || !this.isValidNode(object.nodes[nodeId])) {
+                return false;
+            }
+        }
+
+        // eslint-disable-next-line no-restricted-syntax
+        for (const edge of object.edges) {
+            if (!((edge.source in object.nodes) &amp;&amp; (edge.target in object.nodes))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Verifies the object is a Reline Graphs.
+     * @param object {Object}
+     * @returns {Boolean}
+     */
+    isValidGraphs(object:Object): boolean {
+        const schemaAnalysisResult = this.graphsValidator.validate(object, this.graphsSchema);
+        const schemaErrorsNum = schemaAnalysisResult.errors.length;
+        if (schemaErrorsNum !== 0) {
+            console.log(schemaAnalysisResult);
+            return false;
+        }
+        return true;
+    }
+}
+
+export default RelineValidator;
+
+/*
+const testGraph = {
+    id: "1",
+};
+const a = new RelineElementsValidator();
+console.log(a.isValidGraph(testGraph));
+*/
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-SidebarContainer.html">SidebarContainer</a></li></ul><h3>Namespaces</h3><ul><li><a href="RelineElementBaseUtil.html">RelineElementBaseUtil</a></li></ul><h3>Classes</h3><ul><li><a href="MGSManager.html">MGSManager</a></li><li><a href="module-SidebarContainer-SidebarContainer.html">SidebarContainer</a></li><li><a href="RelineNodeUtil.html">RelineNodeUtil</a></li><li><a href="RelineValidator.html">RelineValidator</a></li></ul><h3>Global</h3><ul><li><a href="global.html">FIELD_NAME_DUPLICATED</a></li><li><a href="global.html">FIELD_NAME_EMPTY</a></li><li><a href="global.html">FIELD_NAME_NOT_FOUNDED</a></li><li><a href="global.html">ID_EMPTY</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue Feb 22 2022 13:50:06 GMT+0800 (China Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
