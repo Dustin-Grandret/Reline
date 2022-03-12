@@ -24,3 +24,10 @@ Reline的核心在于让开发者能够通过**树的遍历**的方式来端到�
 
 使用说明
 TODO
+
+TODO:
+1.剪切板
+2.使用TAB 和ENTER增加节点
+3.将curActivElem放在屏幕中心
+4.使用小键盘上下左右移动curActivElem
+5.完成树输入输出
